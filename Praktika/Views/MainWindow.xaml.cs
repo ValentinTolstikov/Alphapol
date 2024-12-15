@@ -14,6 +14,7 @@ namespace Praktika
         {
             InitializeComponent();
             _mainWindowVM = mainWindowVM;
+            _mainWindowVM._mv = this;
             DataContext = _mainWindowVM;
         }
     }
