@@ -1,4 +1,4 @@
-﻿namespace Domain.Interfaces
+﻿namespace Domain.Models
 {
     public abstract class EntityBase
     {

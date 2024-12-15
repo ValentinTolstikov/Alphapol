@@ -4,9 +4,32 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Praktika"
+        xmlns:databinding="clr-namespace:Praktika.Converters"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" ResizeMode="NoResize" MaxHeight="250" Width="300">
+    <Window.Resources>
+        <databinding:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"></databinding:BoolToVisibilityConverter>
+    </Window.Resources>
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.8*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#D3D3D3" Grid.Row="0">
+            <TextBlock FontFamily="Courier New" FontSize="24" Margin="5" VerticalAlignment="Center">СУБД Альфапол</TextBlock>
+            <Image HorizontalAlignment="Right" Margin="5" Source="Альфапол.png"></Image>
+        </Grid>
+        <StackPanel Width="200" Grid.Row="1">
+            <TextBlock FontFamily="Courier New" FontSize="16">Login</TextBlock>
+            <TextBox Text="{Binding Path=Login, Mode=TwoWay}" FontFamily="Courier New" FontSize="16"></TextBox>
+            <TextBlock FontFamily="Courier New" FontSize="16">Password</TextBlock>
+            <TextBox Text="{Binding Path=Password, Mode=TwoWay}" FontFamily="Courier New" FontSize="16"></TextBox>
+            <StackPanel Visibility="{Binding Path=IsCapthaVisible, Converter={StaticResource ResourceKey=BoolToVisibilityConverter}}">
+                <TextBlock FontFamily="Courier New" FontSize="16">Captha</TextBlock>
+                <Canvas Height="20"></Canvas>
+                <TextBox></TextBox>
+            </StackPanel>
+            <Button Command="{Binding Path=LoginCommand}" Background="#A163F5" FontFamily="Courier New" FontSize="16" Margin="5">Войти</Button>
+        </StackPanel>
     </Grid>
 </Window>
