@@ -23,8 +23,8 @@ namespace Praktika.Views
         private readonly UserMainVM _userMainVM;
         public UserMainView(UserMainVM userMainVM)
         {
-            InitializeComponent();
             DataContext = _userMainVM;
+            InitializeComponent();
         }
     }
 }

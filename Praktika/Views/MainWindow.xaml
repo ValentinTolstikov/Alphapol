@@ -19,8 +19,8 @@
             <RowDefinition Height="0.8*"/>
         </Grid.RowDefinitions>
         <Grid Background="#D3D3D3" Grid.Row="0">
-            <TextBlock FontFamily="Courier New" FontSize="24" Margin="5" VerticalAlignment="Center">СУБД Альфапол</TextBlock>
-            <Image HorizontalAlignment="Right" Margin="5" Source="Альфапол.png"></Image>
+            <TextBlock HorizontalAlignment="Left" FontFamily="Courier New" FontSize="24" Margin="5" VerticalAlignment="Center">СУБД Альфапол</TextBlock>
+            <Image HorizontalAlignment="Left" Height="50" Width="50" Margin="5" Source="..\alf.png"></Image>
         </Grid>
         <StackPanel Width="200" Grid.Row="1">
             <TextBlock FontFamily="Courier New" FontSize="16">Login</TextBlock>
