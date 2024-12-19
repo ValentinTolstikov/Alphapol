@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using Praktika.ViewModels;
 using Persistance;
 using Domain.Interfaces;
@@ -22,9 +21,11 @@ namespace Praktika
                     services.AddSingleton<MainWindow>();
                     services.AddSingleton<MainWindowVM>();
                     services.AddTransient<UserMainView>();
-                    services.AddSingleton<UserMainVM>();
+                    services.AddTransient<UserMainVM>();
                     services.AddDbContext<CUsersUserSourceReposPraktikaPersistanceDbMdfContext>();
                     services.AddSingleton<IRepository<User>, GenericRepository<User>>();
+                    services.AddSingleton<IRepository<Partner>, GenericRepository<Partner>>();
+                    services.AddSingleton<IRepository<PartnerType>, GenericRepository<PartnerType>>();
                     services.AddSingleton<IUserService, UserService>();
                 })
                 .Build();

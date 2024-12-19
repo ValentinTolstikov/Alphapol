@@ -59,9 +59,9 @@ namespace Praktika.ViewModels
             {
                 CurrentUser = user;
                 _mv.Hide();
-                var mv = _serviceProvider.GetRequiredService<UserMainView>();
-                mv.ShowDialog();
-                _mv.Show();
+                var mv = _serviceProvider.GetRequiredService<UserMainVM>();
+                mv.parent = _mv;
+                mv.show();
             }
         }
 

@@ -37,7 +37,7 @@ public partial class Partner : EntityBase
 
     public virtual Street IdStreetNavigation { get; set; } = null!;
 
-    public virtual PartnerType IdTypeNavigation { get; set; } = null!;
+    public PartnerType IdTypeNavigation { get; set; } = null!;
 
     public virtual ICollection<Sale> Sales { get; set; } = new List<Sale>();
 }

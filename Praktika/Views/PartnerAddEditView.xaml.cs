@@ -11,18 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Praktika.ViewModels;
 
 namespace Praktika.Views
 {
     /// <summary>
-    /// Логика взаимодействия для UserMainView.xaml
+    /// Логика взаимодействия для PartnerAddEditView.xaml
     /// </summary>
-    public partial class UserMainView : Window
+    public partial class PartnerAddEditView : Window
     {
-        public UserMainView()
+        public PartnerAddEditView()
         {
-            
+            InitializeComponent();
         }
     }
 }
