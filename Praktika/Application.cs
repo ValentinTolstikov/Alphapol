@@ -22,10 +22,14 @@ namespace Praktika
                     services.AddSingleton<MainWindowVM>();
                     services.AddTransient<UserMainView>();
                     services.AddTransient<UserMainVM>();
+                    services.AddTransient<PartnerAddEditView>();
+                    services.AddTransient<PartnersAddEditVM>();
                     services.AddDbContext<CUsersUserSourceReposPraktikaPersistanceDbMdfContext>();
                     services.AddSingleton<IRepository<User>, GenericRepository<User>>();
                     services.AddSingleton<IRepository<Partner>, GenericRepository<Partner>>();
                     services.AddSingleton<IRepository<PartnerType>, GenericRepository<PartnerType>>();
+                    services.AddSingleton<IRepository<City>, GenericRepository<City>>();
+                    services.AddSingleton<IRepository<Street>, GenericRepository<Street>>();
                     services.AddSingleton<IUserService, UserService>();
                 })
                 .Build();

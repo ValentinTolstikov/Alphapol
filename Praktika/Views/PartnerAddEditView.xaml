@@ -10,12 +10,20 @@
         <StackPanel>
             <UniformGrid Columns="2">
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Тип" FontFamily="Courier New"></TextBlock>
-                <TextBox></TextBox>
+                <ComboBox ItemsSource="{Binding Path=Citys}" DisplayMemberPath="CityName"></ComboBox>
+                <TextBlock TextAlignment="Left" FontSize="14" Text="Город" FontFamily="Courier New"></TextBlock>
+                <ComboBox ItemsSource="{Binding Path=PartnerTypes}" DisplayMemberPath="PartnerTypeName"></ComboBox>
+                <TextBlock TextAlignment="Left" FontSize="14" Text="Улица" FontFamily="Courier New"></TextBlock>
+                <ComboBox ItemsSource="{Binding Path=Streets}" DisplayMemberPath="StreetName"></ComboBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Наименование" FontFamily="Courier New"></TextBlock>
                 <TextBox></TextBox>
-                <TextBlock TextAlignment="Left" FontSize="14" Text="Директор" FontFamily="Courier New"></TextBlock>
+                <TextBlock TextAlignment="Left" FontSize="14" Text="Имя директора" FontFamily="Courier New"></TextBlock>
                 <TextBox></TextBox>
-                <TextBlock TextAlignment="Left" FontSize="14" Text="Номер" FontFamily="Courier New"></TextBlock>
+                <TextBlock TextAlignment="Left" FontSize="14" Text="Фамилия директора" FontFamily="Courier New"></TextBlock>
+                <TextBox></TextBox>
+                <TextBlock TextAlignment="Left" FontSize="14" Text="Отчество директора" FontFamily="Courier New"></TextBlock>
+                <TextBox></TextBox>
+                <TextBlock TextAlignment="Left" FontSize="14" Text="Номер телефона" FontFamily="Courier New"></TextBlock>
                 <TextBox></TextBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Рейтинг" FontFamily="Courier New"></TextBlock>
                 <TextBox></TextBox>

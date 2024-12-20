@@ -46,6 +46,14 @@
                     </UniformGrid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить" Command="{Binding Path=CreateNewPartnerCommand}">
+                    </MenuItem>
+                    <MenuItem Header="Редактировать" Command="{Binding Path=UpdatePartnerCommand}">
+                    </MenuItem>
+                </ContextMenu>
+            </ListBox.ContextMenu>
         </ListBox>
     </Grid>
 </Window>

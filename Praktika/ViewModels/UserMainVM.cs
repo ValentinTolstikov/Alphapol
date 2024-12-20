@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Input;
 using Domain.Interfaces;
 using Domain.Models;
+using Microsoft.Extensions.DependencyInjection;
 using Praktika.Views;
 
 namespace Praktika.ViewModels
@@ -37,6 +38,7 @@ namespace Praktika.ViewModels
         private readonly IRepository<Partner> _partnerRepo;
         private readonly IRepository<PartnerType> _partnerTypeRepo;
         private readonly UserMainView _userMainView;
+        private IServiceScopeFactory serviceScopeFac;
 
         private User? _currentUser = MainWindowVM.CurrentUser;
         private string _userFIO;
@@ -50,8 +52,10 @@ namespace Praktika.ViewModels
             }
         }
 
-        public UserMainVM(UserMainView mv, IRepository<Partner> partnersRepository, IRepository<PartnerType> partnersTypeRepository)
+        public UserMainVM(UserMainView mv, IServiceScopeFactory serviceScope, IRepository<Partner> partnersRepository, IRepository<PartnerType> partnersTypeRepository)
         {
+            serviceScopeFac = serviceScope;
+
             _partnerTypeRepo = partnersTypeRepository;
             _partnerRepo = partnersRepository;
             _userMainView = mv;
@@ -59,7 +63,22 @@ namespace Praktika.ViewModels
             GetUserFIO();
 
             BackToLoginPageCommand = new RelayCommand(BackToLoginHandler);
+            CreateNewPartnerCommand = new RelayCommand(CreateNewPartnerHandler);
+            UpdatePartnerCommand = new RelayCommand(UpdatePartnerCommandHandler);
+
             Init();
+        }
+
+        private void UpdatePartnerCommandHandler(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CreateNewPartnerHandler(object obj)
+        {
+            var scope = serviceScopeFac.CreateScope();
+            var vm = scope.ServiceProvider.GetRequiredService<PartnersAddEditVM>();
+            vm.IsEdit = false;
         }
 
         private async Task Init()
@@ -94,6 +113,8 @@ namespace Praktika.ViewModels
         }
 
         public ICommand BackToLoginPageCommand { get; set; }
+        public ICommand CreateNewPartnerCommand { get; set; }
+        public ICommand UpdatePartnerCommand { get; set; }
 
         public string UserFIO
         {

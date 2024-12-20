@@ -4,9 +4,8 @@ using Domain.Models;
 
 namespace Domain.Models;
 
-public partial class City
+public partial class City : EntityBase
 {
-    public int Id { get; set; }
 
     public string? CityName { get; set; }
 
