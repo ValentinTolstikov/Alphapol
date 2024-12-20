@@ -20,7 +20,7 @@ namespace Praktika.ViewModels
     {
         private ObservableCollection<Partner> _partners;
 
-        public Window parent {  get; set; }
+        public MainWindow parent {  get; set; }
         public ObservableCollection<Partner> Partners {
             get
             {
@@ -45,11 +45,8 @@ namespace Praktika.ViewModels
 
         public void show()
         {
-            if (_userMainView != null)
-            {
                 _userMainView.Show();
                 _userMainView.InitializeComponent();
-            }
         }
 
         public UserMainVM(UserMainView mv, IServiceScopeFactory serviceScope, IRepository<Partner> partnersRepository, IRepository<PartnerType> partnersTypeRepository)
@@ -79,6 +76,7 @@ namespace Praktika.ViewModels
             var scope = serviceScopeFac.CreateScope();
             var vm = scope.ServiceProvider.GetRequiredService<PartnersAddEditVM>();
             vm.IsEdit = false;
+            vm.Parent = _userMainView;
         }
 
         private async Task Init()
@@ -97,8 +95,9 @@ namespace Praktika.ViewModels
 
         private void BackToLoginHandler(object obj)
         {
-            _userMainView.Close();
             parent.Show();
+            parent.Focus();
+            _userMainView.Hide();
         }
 
         private void GetUserFIO()

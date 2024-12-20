@@ -22,6 +22,8 @@ namespace Praktika.ViewModels
         private PartnerAddEditView _view;
 
         private ObservableCollection<City> _citys;
+        private ObservableCollection<PartnerType> _partnerTypes;
+        private ObservableCollection<Street> _streets;
 
         public ObservableCollection<City> Citys {
             get => _citys;
@@ -31,11 +33,28 @@ namespace Praktika.ViewModels
                 OnPropertyChanged();
             }
         }
-        public ObservableCollection<PartnerType> PartnerTypes;
-        public ObservableCollection<Street> Streets;
+
+        public ObservableCollection<PartnerType> PartnerTypes
+        {
+            get => _partnerTypes;
+            set
+            {
+                _partnerTypes = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<Street> Streets
+        {
+            get => _streets;
+            set
+            {
+                _streets = value;
+                OnPropertyChanged();
+            }
+        }
 
         public Window Parent;
-
         public bool IsEdit { get; set; }
         public Partner partner { get; set; }
 

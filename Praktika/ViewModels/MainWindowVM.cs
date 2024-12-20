@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Domain.Interfaces;
@@ -16,12 +15,15 @@ namespace Praktika.ViewModels
 {
     public class MainWindowVM : INotifyPropertyChanged
     {
+        System.Timers.Timer timer;
+        
         public static User? CurrentUser;
         
         private readonly IUserService _userService;
         private readonly IServiceProvider _serviceProvider;
         public MainWindow _mv;
 
+        private bool _isCapthaFailed = false;
         private Random rnd = new Random();
         private string _login;
         private string _password;
@@ -35,7 +37,7 @@ namespace Praktika.ViewModels
         {
             _userService = userService;
             _serviceProvider = service;
-            LoginCommand = new RelayCommand(LoginHandler);
+            LoginCommand = new RelayCommand(LoginHandler, null);
         }
 
         private async void LoginHandler(object obj)
@@ -52,6 +54,7 @@ namespace Praktika.ViewModels
             {
                 MessageBox.Show("Пользователь с таким логином и паролем не найден.");
                 IsCapthaVisible = true;
+                _isCapthaFailed = false;
                 GenerateCaptha();
                 return;
             }

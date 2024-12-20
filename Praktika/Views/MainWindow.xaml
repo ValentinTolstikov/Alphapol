@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <Grid Background="#D3D3D3" Grid.Row="0">
             <TextBlock HorizontalAlignment="Left" FontFamily="Courier New" FontSize="24" Margin="5" VerticalAlignment="Center">СУБД Альфапол</TextBlock>
-            <Image HorizontalAlignment="Right" Height="50" Width="50" Margin="5" Source="../alf.png"></Image>
+            <Image HorizontalAlignment="Right" Height="40" Width="40" Source="../alf.png"></Image>
         </Grid>
         <StackPanel Width="200" Grid.Row="1">
             <TextBlock FontFamily="Courier New" FontSize="16">Login</TextBlock>
