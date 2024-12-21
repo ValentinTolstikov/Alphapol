@@ -5,30 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Praktika.Views"
         mc:Ignorable="d"
-        Title="Добавление/Редактирование партнера" ResizeMode="NoResize" Width="400" MaxHeight="300">
+        Title="Добавление/Редактирование партнера" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Width="400" MaxHeight="300">
     <Grid>
         <StackPanel>
             <UniformGrid Columns="2">
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Тип" FontFamily="Courier New"></TextBlock>
-                <ComboBox ItemsSource="{Binding Path=Citys}" DisplayMemberPath="CityName"></ComboBox>
+                <ComboBox SelectedItem="{Binding Path=Partner.IdTypeNavigation}" ItemsSource="{Binding Path=PartnerTypes}" DisplayMemberPath="PartnerTypeName"></ComboBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Город" FontFamily="Courier New"></TextBlock>
-                <ComboBox ItemsSource="{Binding Path=PartnerTypes}" DisplayMemberPath="PartnerTypeName"></ComboBox>
+                <ComboBox SelectedItem="{Binding Path=Partner.IdCityNavigation}" ItemsSource="{Binding Path=Citys}" DisplayMemberPath="CityName"></ComboBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Улица" FontFamily="Courier New"></TextBlock>
-                <ComboBox ItemsSource="{Binding Path=Streets}" DisplayMemberPath="StreetName"></ComboBox>
+                <ComboBox SelectedItem="{Binding Path=Partner.IdStreetNavigation}" ItemsSource="{Binding Path=Streets}" DisplayMemberPath="StreetName"></ComboBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Наименование" FontFamily="Courier New"></TextBlock>
-                <TextBox></TextBox>
+                <TextBox Text="{Binding Path=Partner.Name}"></TextBox>
+                <TextBlock TextAlignment="Left" FontSize="14" Text="INN" FontFamily="Courier New"></TextBlock>
+                <TextBox Text="{Binding Path=Partner.Inn}"></TextBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Имя директора" FontFamily="Courier New"></TextBlock>
-                <TextBox></TextBox>
+                <TextBox Text="{Binding Path=Partner.DirName}"></TextBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Фамилия директора" FontFamily="Courier New"></TextBlock>
-                <TextBox></TextBox>
+                <TextBox Text="{Binding Path=Partner.DirFam}"></TextBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Отчество директора" FontFamily="Courier New"></TextBlock>
-                <TextBox></TextBox>
+                <TextBox Text="{Binding Path=Partner.DirOtc}"></TextBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Номер телефона" FontFamily="Courier New"></TextBlock>
-                <TextBox></TextBox>
+                <TextBox Text="{Binding Path=Partner.Phone}"></TextBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Рейтинг" FontFamily="Courier New"></TextBlock>
-                <TextBox></TextBox>
-                <Button>Отмена</Button>
-                <Button>Сохранить</Button>
+                <TextBox Text="{Binding Path=Partner.Rating}"></TextBox>
+                <Button Command="{Binding Path=CancelCommand}">Отмена</Button>
+                <Button Command="{Binding Path=SaveCommand}">Сохранить</Button>
             </UniformGrid>
         </StackPanel>
     </Grid>

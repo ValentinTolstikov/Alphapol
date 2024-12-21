@@ -19,6 +19,7 @@ namespace Praktika.ViewModels
     public class UserMainVM : INotifyPropertyChanged
     {
         private ObservableCollection<Partner> _partners;
+        private Partner _selectedPartner;
 
         public MainWindow parent {  get; set; }
         public ObservableCollection<Partner> Partners {
@@ -34,9 +35,19 @@ namespace Praktika.ViewModels
                 OnPropertyChanged();
             }
         }
+        public Partner SelectedPartner {
+            get => _selectedPartner;
+            set
+            {
+                _selectedPartner = value;
+                OnPropertyChanged();
+            }
+        }
 
         private readonly IRepository<Partner> _partnerRepo;
         private readonly IRepository<PartnerType> _partnerTypeRepo;
+        private readonly IRepository<City> _cityRepo;
+        private readonly IRepository<Street> _StreetRepo;
         private readonly UserMainView _userMainView;
         private IServiceScopeFactory serviceScopeFac;
 
@@ -49,11 +60,14 @@ namespace Praktika.ViewModels
                 _userMainView.InitializeComponent();
         }
 
-        public UserMainVM(UserMainView mv, IServiceScopeFactory serviceScope, IRepository<Partner> partnersRepository, IRepository<PartnerType> partnersTypeRepository)
+        public UserMainVM(UserMainView mv, IServiceScopeFactory serviceScope, IRepository<Partner> partnersRepository, IRepository<PartnerType> partnersTypeRepository, IRepository<City> cityRepo, IRepository<Street> streetRepo)
         {
             serviceScopeFac = serviceScope;
 
             _partnerTypeRepo = partnersTypeRepository;
+            _cityRepo = cityRepo;
+            _StreetRepo = streetRepo;
+
             _partnerRepo = partnersRepository;
             _userMainView = mv;
             _userMainView.DataContext = this;
@@ -68,7 +82,12 @@ namespace Praktika.ViewModels
 
         private void UpdatePartnerCommandHandler(object obj)
         {
-            throw new NotImplementedException();
+            var scope = serviceScopeFac.CreateScope();
+            var vm = scope.ServiceProvider.GetRequiredService<PartnersAddEditVM>();
+            vm.IsEdit = true;
+            vm.Partner = SelectedPartner;
+            vm.Parent = _userMainView;
+            vm.Init();
         }
 
         private void CreateNewPartnerHandler(object obj)
@@ -77,6 +96,7 @@ namespace Praktika.ViewModels
             var vm = scope.ServiceProvider.GetRequiredService<PartnersAddEditVM>();
             vm.IsEdit = false;
             vm.Parent = _userMainView;
+            vm.Init();
         }
 
         private async Task Init()
@@ -87,6 +107,8 @@ namespace Praktika.ViewModels
                 foreach (var partner in partners)
                 {
                     partner.IdTypeNavigation = await _partnerTypeRepo.GetByIdAsync(partner.IdType);
+                    partner.IdCityNavigation = await _cityRepo.GetByIdAsync(partner.IdCity);
+                    partner.IdStreetNavigation = await _StreetRepo.GetByIdAsync(partner.IdStreet);
                 }
                 Partners = new ObservableCollection<Partner>(partners);
             });

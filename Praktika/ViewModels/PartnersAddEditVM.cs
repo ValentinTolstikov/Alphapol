@@ -15,6 +15,12 @@ namespace Praktika.ViewModels
 {
     class PartnersAddEditVM : INotifyPropertyChanged
     {
+        private Partner _partner;
+
+        private City _selectedCity;
+        private PartnerType _selectedType;
+        private Street _selectedStreet;
+
         private readonly IRepository<City> _cityRepo;
         private readonly IRepository<PartnerType> _partnerTypesRepo;
         private readonly IRepository<Street> _streetRepo;
@@ -54,29 +60,73 @@ namespace Praktika.ViewModels
             }
         }
 
-        public Window Parent;
+        public UserMainView Parent;
         public bool IsEdit { get; set; }
-        public Partner partner { get; set; }
+        public Partner Partner 
+        {
+            get => _partner;
+            set
+            {
+                _partner = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public PartnerType SelectedType
+        {
+            get => _selectedType;
+            set
+            {
+                _selectedType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public City SelectedCity
+        {
+            get => _selectedCity;
+            set
+            {
+                _selectedCity = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Street SelectedStreet
+        {
+            get => _selectedStreet;
+            set
+            {
+                _selectedStreet = value;
+                OnPropertyChanged();
+            }
+        }
 
         public PartnersAddEditVM(PartnerAddEditView view,IRepository<City> cRepo, IRepository<PartnerType> tRepo, IRepository<Street> sRepo) 
         {
+            if (!IsEdit)
+            {
+                Partner = new Partner();
+            }
+            
+
             _view = view;
             _view.DataContext = this;
+
             _cityRepo = cRepo;
             _partnerTypesRepo = tRepo;
             _streetRepo = sRepo;
-
-            Init();
         }
 
-        private async void Init()
+        public async void Init()
         {
             _view.Show();
-            
+
             Citys = new ObservableCollection<City>(await _cityRepo.GetAllAsync());
             PartnerTypes = new ObservableCollection<PartnerType>(await _partnerTypesRepo.GetAllAsync());
             Streets = new ObservableCollection<Street>(await _streetRepo.GetAllAsync());
-            OnPropertyChanged();
+
+            //OnPropertyChanged();
         }
 
         public void OnPropertyChanged([CallerMemberName] string prop = "")
