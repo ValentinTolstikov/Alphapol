@@ -16,5 +16,6 @@ namespace Domain.Interfaces
         Task AddAsync(T entity);
         Task DeleteAsync(T entity);
         Task EditAsync(T entity);
+        void ResetChanges();
     }
 }

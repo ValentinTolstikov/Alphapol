@@ -4,31 +4,40 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Praktika.Views"
+        xmlns:validators="clr-namespace:Praktika.Validators"
         mc:Ignorable="d"
         Title="Добавление/Редактирование партнера" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Width="400" MaxHeight="300">
     <Grid>
         <StackPanel>
             <UniformGrid Columns="2">
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Тип" FontFamily="Courier New"></TextBlock>
-                <ComboBox SelectedItem="{Binding Path=Partner.IdTypeNavigation}" ItemsSource="{Binding Path=PartnerTypes}" DisplayMemberPath="PartnerTypeName"></ComboBox>
+                <ComboBox SelectedItem="{Binding Path=Partner.IdTypeNavigation, Mode=TwoWay}" ItemsSource="{Binding Path=PartnerTypes}" DisplayMemberPath="PartnerTypeName"></ComboBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Город" FontFamily="Courier New"></TextBlock>
-                <ComboBox SelectedItem="{Binding Path=Partner.IdCityNavigation}" ItemsSource="{Binding Path=Citys}" DisplayMemberPath="CityName"></ComboBox>
+                <ComboBox SelectedItem="{Binding Path=Partner.IdCityNavigation, Mode=TwoWay}" ItemsSource="{Binding Path=Citys}" DisplayMemberPath="CityName"></ComboBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Улица" FontFamily="Courier New"></TextBlock>
-                <ComboBox SelectedItem="{Binding Path=Partner.IdStreetNavigation}" ItemsSource="{Binding Path=Streets}" DisplayMemberPath="StreetName"></ComboBox>
+                <ComboBox SelectedItem="{Binding Path=Partner.IdStreetNavigation, Mode=TwoWay}" ItemsSource="{Binding Path=Streets}" DisplayMemberPath="StreetName"></ComboBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Наименование" FontFamily="Courier New"></TextBlock>
-                <TextBox Text="{Binding Path=Partner.Name}"></TextBox>
+                <TextBox Text="{Binding Path=Partner.Name, Mode=TwoWay}"></TextBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="INN" FontFamily="Courier New"></TextBlock>
-                <TextBox Text="{Binding Path=Partner.Inn}"></TextBox>
+                <TextBox Text="{Binding Path=Partner.Inn, Mode=TwoWay}"></TextBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Имя директора" FontFamily="Courier New"></TextBlock>
-                <TextBox Text="{Binding Path=Partner.DirName}"></TextBox>
+                <TextBox Text="{Binding Path=Partner.DirName, Mode=TwoWay}"></TextBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Фамилия директора" FontFamily="Courier New"></TextBlock>
-                <TextBox Text="{Binding Path=Partner.DirFam}"></TextBox>
+                <TextBox Text="{Binding Path=Partner.DirFam, Mode=TwoWay}"></TextBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Отчество директора" FontFamily="Courier New"></TextBlock>
-                <TextBox Text="{Binding Path=Partner.DirOtc}"></TextBox>
+                <TextBox Text="{Binding Path=Partner.DirOtc, Mode=TwoWay}"></TextBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Номер телефона" FontFamily="Courier New"></TextBlock>
-                <TextBox Text="{Binding Path=Partner.Phone}"></TextBox>
+                <TextBox Text="{Binding Path=Partner.Phone, Mode=TwoWay}"></TextBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Рейтинг" FontFamily="Courier New"></TextBlock>
-                <TextBox Text="{Binding Path=Partner.Rating}"></TextBox>
+                <TextBox>
+                    <TextBox.Text>
+                        <Binding Path="Partner.Rating" Mode="TwoWay">
+                            <Binding.ValidationRules>
+                                <validators:NotNullValidator />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
                 <Button Command="{Binding Path=CancelCommand}">Отмена</Button>
                 <Button Command="{Binding Path=SaveCommand}">Сохранить</Button>
             </UniformGrid>

@@ -52,5 +52,9 @@ namespace Persistance
             _context.Set<T>().Remove(entity);
             await _context.SaveChangesAsync();
         }
+
+        public void ResetChanges() => _context.ChangeTracker.Entries()
+    .Where(e => e.Entity != null).ToList()
+    .ForEach(e => e.State = EntityState.Detached);
     }
 }

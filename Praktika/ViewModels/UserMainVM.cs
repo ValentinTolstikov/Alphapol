@@ -99,7 +99,7 @@ namespace Praktika.ViewModels
             vm.Init();
         }
 
-        private async Task Init()
+        public async Task Init()
         {
             await Task.Run(async () =>
             {

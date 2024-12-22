@@ -7,6 +7,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 using Domain.Interfaces;
 using Domain.Models;
 using Praktika.Views;
@@ -20,11 +22,12 @@ namespace Praktika.ViewModels
         private City _selectedCity;
         private PartnerType _selectedType;
         private Street _selectedStreet;
+        private bool _canSave;
 
         private readonly IRepository<City> _cityRepo;
         private readonly IRepository<PartnerType> _partnerTypesRepo;
         private readonly IRepository<Street> _streetRepo;
-
+        private readonly IRepository<Partner> _partnerRepo;
         private PartnerAddEditView _view;
 
         private ObservableCollection<City> _citys;
@@ -102,7 +105,7 @@ namespace Praktika.ViewModels
             }
         }
 
-        public PartnersAddEditVM(PartnerAddEditView view,IRepository<City> cRepo, IRepository<PartnerType> tRepo, IRepository<Street> sRepo) 
+        public PartnersAddEditVM(PartnerAddEditView view, IRepository<Partner> pRepo, IRepository<City> cRepo, IRepository<PartnerType> tRepo, IRepository<Street> sRepo) 
         {
             if (!IsEdit)
             {
@@ -116,18 +119,46 @@ namespace Praktika.ViewModels
             _cityRepo = cRepo;
             _partnerTypesRepo = tRepo;
             _streetRepo = sRepo;
+            _partnerRepo = pRepo;
+
+
+            CancelCommand = new AsyncRelayCommand(CancelCommandHandler);
+            SaveCommand = new AsyncRelayCommand(SaveCommandHandler);
+        }
+
+        private async Task CancelCommandHandler()
+        {
+            _partnerRepo.ResetChanges();
+            await ((UserMainVM)Parent.DataContext).Init();
+            _view.Hide();
+        }
+
+        private async Task SaveCommandHandler()
+        {
+            if (!IsEdit)
+            {
+                await _partnerRepo.AddAsync(Partner);
+                await ((UserMainVM)Parent.DataContext).Init();
+            }
+            else
+            {
+                await _partnerRepo.EditAsync(Partner);
+                await ((UserMainVM)Parent.DataContext).Init();
+            }
+
+            _view.Hide();
         }
 
         public async void Init()
         {
-            _view.Show();
-
             Citys = new ObservableCollection<City>(await _cityRepo.GetAllAsync());
             PartnerTypes = new ObservableCollection<PartnerType>(await _partnerTypesRepo.GetAllAsync());
             Streets = new ObservableCollection<Street>(await _streetRepo.GetAllAsync());
-
-            //OnPropertyChanged();
+            _view.ShowDialog();
         }
+
+        public ICommand CancelCommand { get; set; }
+        public ICommand SaveCommand { get; set; }
 
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

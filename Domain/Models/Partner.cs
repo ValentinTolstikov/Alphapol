@@ -5,6 +5,29 @@ namespace Domain.Models;
 
 public partial class Partner : EntityBase
 {
+    public Partner() 
+    { }
+
+    public Partner(Partner p)
+    {
+        Id = p.Id;
+        IdType = p.IdType;
+        IdCity = p.IdCity;
+        IdStreet = p.IdStreet;
+        Name = p.Name;
+        House = p.House;
+        Inn = p.Inn;
+        DirFam = p.DirFam;
+        DirName = p.DirName;
+        DirOtc = p.DirOtc;
+        Phone = p.Phone;
+        Email = p.Email;
+        Rating = p.Rating;
+        IdCityNavigation = p.IdCityNavigation;
+        IdStreetNavigation = p.IdStreetNavigation;
+        IdTypeNavigation = p.IdTypeNavigation;
+    }
+
     public int Id { get; set; }
 
     public int IdType { get; set; }
