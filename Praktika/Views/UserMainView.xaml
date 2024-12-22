@@ -9,6 +9,7 @@
         Height="450" Width="800"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
+        Closing="Window_Closing"
         xmlns:databinding="clr-namespace:Praktika.Converters"
         MaxHeight="450" >
     <Window.Resources>
@@ -21,18 +22,18 @@
         </Grid.RowDefinitions>
 
         <Button Command="{Binding Path=BackToLoginPageCommand}" FontFamily="Courier New" Margin="10" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0">Back to login</Button>
-        <TextBlock Grid.Row="0" TextAlignment="Left" FontSize="24"  Text="{Binding NotifyOnSourceUpdated=True, Path=UserFIO, Mode=OneWay}" Width="300" FontFamily="Courier New"></TextBlock>
+        <TextBlock Grid.Row="0" TextAlignment="Left" FontSize="24" VerticalAlignment="Center" Text="{Binding NotifyOnSourceUpdated=True, Path=UserFIO, Mode=OneWay}" Width="300" FontFamily="Courier New"></TextBlock>
         <Image Grid.Row="0" HorizontalAlignment="Right" Height="50" Width="50" Margin="5" Source="..\alf.png"></Image>
 
         <ListBox Grid.ColumnSpan="3" SelectedValue="{Binding Path=SelectedPartner}" Grid.Row="1" ItemsSource="{Binding Path=Partners, Mode=OneWay}" FontSize="32">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <UniformGrid Width="800" Columns="3">
+                    <UniformGrid Width="600" Columns="3">
                         <StackPanel Grid.Column="0">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
-                                    <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                                    <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                                    <ColumnDefinition Width="0.6*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock Grid.Column="0" TextAlignment="Left" FontSize="14" Text="{Binding Path=IdTypeNavigation.PartnerTypeName}" FontFamily="Courier New"></TextBlock>

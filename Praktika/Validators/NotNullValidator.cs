@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace Praktika.Validators
 {
-    class NotNullValidator : ValidationRule
+    public class NotNullValidator : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {

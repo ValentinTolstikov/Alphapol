@@ -137,8 +137,16 @@ namespace Praktika.ViewModels
         {
             if (!IsEdit)
             {
-                await _partnerRepo.AddAsync(Partner);
-                await ((UserMainVM)Parent.DataContext).Init();
+                try
+                {
+                    await _partnerRepo.AddAsync(Partner);
+                    await ((UserMainVM)Parent.DataContext).Init();
+                }
+                catch
+                {
+                    MessageBox.Show("Чтото пошло не так, возможно вы не заполнили все поля или допустили ошибки");
+                    return;
+                }
             }
             else
             {

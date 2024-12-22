@@ -24,5 +24,10 @@ namespace Praktika.Views
         {
             
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ((UserMainVM)this.DataContext).BackToLoginPageCommand.Execute(null);
+        }
     }
 }

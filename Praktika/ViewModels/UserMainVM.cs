@@ -82,6 +82,11 @@ namespace Praktika.ViewModels
 
         private void UpdatePartnerCommandHandler(object obj)
         {
+            if(SelectedPartner is null)
+            {
+                return;
+            }
+
             var scope = serviceScopeFac.CreateScope();
             var vm = scope.ServiceProvider.GetRequiredService<PartnersAddEditVM>();
             vm.IsEdit = true;

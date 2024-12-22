@@ -9,6 +9,7 @@
         Title="Авторизация"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
+        Closing="Window_Closing"
         MaxHeight="300" Width="300">
     <Window.Resources>
         <databinding:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"></databinding:BoolToVisibilityConverter>

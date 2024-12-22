@@ -17,17 +17,66 @@
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Улица" FontFamily="Courier New"></TextBlock>
                 <ComboBox SelectedItem="{Binding Path=Partner.IdStreetNavigation, Mode=TwoWay}" ItemsSource="{Binding Path=Streets}" DisplayMemberPath="StreetName"></ComboBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Наименование" FontFamily="Courier New"></TextBlock>
-                <TextBox Text="{Binding Path=Partner.Name, Mode=TwoWay}"></TextBox>
+                <TextBox>
+                    <TextBox.Text>
+                        <Binding Path="Partner.Name" Mode="TwoWay">
+                            <Binding.ValidationRules>
+                                <validators:NotNullValidator />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="INN" FontFamily="Courier New"></TextBlock>
-                <TextBox Text="{Binding Path=Partner.Inn, Mode=TwoWay}"></TextBox>
+                <TextBox>
+                    <TextBox.Text>
+                        <Binding Path="Partner.Inn" Mode="TwoWay">
+                            <Binding.ValidationRules>
+                                <validators:NotNullValidator/>
+                                <validators:NumbersOnlyValidator />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Имя директора" FontFamily="Courier New"></TextBlock>
-                <TextBox Text="{Binding Path=Partner.DirName, Mode=TwoWay}"></TextBox>
+                <TextBox>
+                    <TextBox.Text>
+                        <Binding Path="Partner.DirName" Mode="TwoWay">
+                            <Binding.ValidationRules>
+                                <validators:NotNullValidator />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Фамилия директора" FontFamily="Courier New"></TextBlock>
-                <TextBox Text="{Binding Path=Partner.DirFam, Mode=TwoWay}"></TextBox>
+                <TextBox>
+                    <TextBox.Text>
+                        <Binding Path="Partner.DirFam" Mode="TwoWay">
+                            <Binding.ValidationRules>
+                                <validators:NotNullValidator />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Отчество директора" FontFamily="Courier New"></TextBlock>
-                <TextBox Text="{Binding Path=Partner.DirOtc, Mode=TwoWay}"></TextBox>
+                <TextBox>
+                    <TextBox.Text>
+                        <Binding Path="Partner.DirOtc" Mode="TwoWay">
+                            <Binding.ValidationRules>
+                                <validators:NotNullValidator />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Номер телефона" FontFamily="Courier New"></TextBlock>
-                <TextBox Text="{Binding Path=Partner.Phone, Mode=TwoWay}"></TextBox>
+                <TextBox>
+                    <TextBox.Text>
+                        <Binding Path="Partner.Phone" Mode="TwoWay">
+                            <Binding.ValidationRules>
+                                <validators:NotNullValidator />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
                 <TextBlock TextAlignment="Left" FontSize="14" Text="Рейтинг" FontFamily="Courier New"></TextBlock>
                 <TextBox>
                     <TextBox.Text>
